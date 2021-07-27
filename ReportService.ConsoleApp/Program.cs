@@ -24,7 +24,7 @@ namespace ReportService.ConsoleApp
 
 
 
-            /*var _emailReceiver = "haloalodziendobry12@gmail.com";
+            /*var _emailReceiver = "";
             var _htmlEmail = new GenerateHtmlEmail();
 
             var email = new Email(new EmailParams
@@ -32,9 +32,9 @@ namespace ReportService.ConsoleApp
                 HostSmtp = "smtp.gmail.com",
                 Port = 587,
                 EnableSsl = true,
-                SenderName = "Wiktor Ziębka",
-                SenderEmail = "slavic.financials@gmail.com",
-                SenderEmailPassword = "tsjuyhqywtjsvreh"
+                SenderName = "",
+                SenderEmail = "",
+                SenderEmailPassword = ""
             });
 
             var report = new Report
