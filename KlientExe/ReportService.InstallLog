@@ -1,0 +1,13 @@
+﻿Instalowanie zestawu 'D:\Wiktor Ziębka\ReportService\KlientExe\ReportService.exe'.
+Uwzględnione parametry to:
+   logtoconsole = 
+   logfile = D:\Wiktor Ziębka\ReportService\KlientExe\ReportService.InstallLog
+   assemblypath = D:\Wiktor Ziębka\ReportService\KlientExe\ReportService.exe
+Trwa instalowanie usługi ReportService...
+Usługa ReportService została zainstalowana pomyślnie.
+Trwa tworzenie źródła EventLog ReportService w dzienniku Application...
+Zatwierdzanie zestawu 'D:\Wiktor Ziębka\ReportService\KlientExe\ReportService.exe'.
+Uwzględnione parametry to:
+   logtoconsole = 
+   logfile = D:\Wiktor Ziębka\ReportService\KlientExe\ReportService.InstallLog
+   assemblypath = D:\Wiktor Ziębka\ReportService\KlientExe\ReportService.exe
