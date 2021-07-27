@@ -23,22 +23,22 @@ namespace ReportService.Core
                 @"
                     <table border=1 cellpadding=5 cellspacing=1>
                         <tr>
-                                <td align=center bgcolor=lightblue>Wiadomość<td/>
-                                <td align=center bgcolor=lightblue>Data<td/>
+                            <td align=center bgcolor=lightgrey>Wiadomość</td>
+                            <td align=center bgcolor=lightgrey>Data</td>
                         </tr>
                 ";
 
             foreach (var error in errors)
             {
                 html +=
-                    $@" <tr>
-                            <td align=center>{error.Message}</td>
-`                           <td align=center>{error.Date.ToString("dd-MM-yyyy HH:mm")}</td>
-                        </tr>
-                      ";
+                    $@"<tr>
+                        <td align=center>{error.Message}</td>
+                        <td align=center>{error.Date.ToString("dd-MM-yyyy HH:mm")}</td>
+                       </tr>
+                    ";
             }
 
-            html += @"</table><br /><br /><i>Automatyczna wiadomośc wysłana z aplikacji ReportService.<i>";
+            html += @"</table><br /><br /><i>Automatyczna wiadomość wysłana z aplikacji ReportService.</i>";
 
             return html;
         }
@@ -48,36 +48,38 @@ namespace ReportService.Core
             if (report == null)
                 throw new ArgumentNullException(nameof(report));
 
-            var html = $"Raport {report.Title} z dnia {report.Date.ToString("dd-MM-yyyy")}.<br /><br />";
+            var html = $@"Raport {report.Title} 
+                z dnia {report.Date.ToString("dd-MM-yyyy")}.<br /><br />";
 
-            if (report.Positions.Any() && report.Positions != null)
+            if (report.Positions != null && report.Positions.Any())
             {
                 html +=
-                @"
+                    @"
                     <table border=1 cellpadding=5 cellspacing=1>
                         <tr>
-                                <td align=center bgcolor=lightblue>Tytuł<td/>
-                                <td align=center bgcolor=lightblue>Opis<td/>
-                                <td align=center bgcolor=lightblue>Wartość<td/>
+                            <td align=center bgcolor=lightgrey>Tytuł</td>
+                            <td align=center bgcolor=lightgrey>Opis</td>
+                            <td align=center bgcolor=lightgrey>Wartość</td>
                         </tr>
                 ";
 
                 foreach (var position in report.Positions)
                 {
                     html +=
-                        $@" <tr>
-                            <td align=center>{position.Title}</td>
-`                           <td align=center>{position.Description}</td>
-                            <td align=center>{position.Value.ToString("0.00")} zł</td>
-                        </tr>
-                      ";
+                        $@"<tr>
+                        <td align=center>{position.Title}</td>
+                        <td align=center>{position.Description}</td>
+                        <td align=center>{position.Value.ToString("0.00")} zł</td>
+                       </tr>
+                    ";
                 }
+
                 html += "</table>";
-            }            
+            }
             else
                 html += "-- Brak danych do wyświetlenia --";
 
-            html += @"<br /><br /><i>Automatyczna wiadomość wysłana z aplikacji ReportService.<i>";
+            html += @"<br /><br /><i>Automatyczna wiadomość wysłana z aplikacji ReportService.</i>";
 
             return html;
         }

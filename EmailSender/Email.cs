@@ -1,11 +1,13 @@
 ﻿using EmailSender.Extensions;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
+using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +15,7 @@ namespace EmailSender
 {
     public class Email
     {
-        private SmtpClient _smtpClient;
+        private SmtpClient _smtp;
         private MailMessage _mail;
 
         private string _hostSmtp;
@@ -22,7 +24,6 @@ namespace EmailSender
         private string _senderEmail;
         private string _senderEmailPassword;
         private string _senderName;
-
 
         public Email(EmailParams emailParams)
         {
@@ -46,22 +47,19 @@ namespace EmailSender
 
             _mail.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(body.StripHTML(), null, MediaTypeNames.Text.Plain));
 
-            _mail.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(
-            $@"
+            _mail.AlternateViews.Add(AlternateView.CreateAlternateViewFromString($@"
             <html>
-                <head>
-                </head>
-                <body>
-                        <div style='font-size: 16px padding: 10px; font-family: Arial; line-height: 1.4;'>
-                            {body}
-                        </div>
-                </body>
+                 <head> 
+                 </head>
+                 <body>
+                    <div style='font-size: 16px padding: 10px; font-family: Arial; line-height: 1.4;'>
+                        {body}
+                    </div>
+                 </body>
             </html>
+            ", null, MediaTypeNames.Text.Html));
 
-
-            ",null,MediaTypeNames.Text.Html));
-
-            _smtpClient = new SmtpClient
+            _smtp = new SmtpClient
             {
                 Host = _hostSmtp,
                 EnableSsl = _enableSsl,
@@ -71,15 +69,14 @@ namespace EmailSender
                 Credentials = new NetworkCredential(_senderEmail, _senderEmailPassword)
             };
 
-            _smtpClient.SendCompleted += OnSendCompleted;
+            _smtp.SendCompleted += OnSendCompleted;
 
-            await _smtpClient.SendMailAsync(_mail);
-
+            await _smtp.SendMailAsync(_mail);
         }
 
-        private void OnSendCompleted(object sender, AsyncCompletedEventArgs e)
+        private void OnSendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            _smtpClient.Dispose();
+            _smtp.Dispose();
             _mail.Dispose();
         }
     }
