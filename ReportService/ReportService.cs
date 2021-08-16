@@ -1,5 +1,5 @@
 ﻿using Cipher;
-using EmailSender;
+using EmailSenderLibrary;
 using ReportService.Core;
 using ReportService.Core.Repositories;
 using System;

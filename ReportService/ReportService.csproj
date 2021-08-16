@@ -90,9 +90,9 @@
       <Project>{2fc08707-6f82-4421-b679-75e911daf20a}</Project>
       <Name>Cipher</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EmailSender\EmailSender.csproj">
+    <ProjectReference Include="..\EmailSender\EmailSenderLibrary.csproj">
       <Project>{9bef12ef-ed9d-47c9-8fd0-108c8bb1e882}</Project>
-      <Name>EmailSender</Name>
+      <Name>EmailSenderLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\ReportService.Core\ReportService.Core.csproj">
       <Project>{1d115775-a858-4f40-b44b-774d42a3323d}</Project>
